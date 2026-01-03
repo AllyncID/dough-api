@@ -1,0 +1,13 @@
+**/bin/
+**/.settings/
+**/.classpath
+**/.project
+**/.idea
+**/target
+
+*.iml
+
+**pom.xml.versionsBackup
+dependency-reduced-pom.xml
+publish.bat
+.ci-friendly-pom.xml
