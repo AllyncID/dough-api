@@ -5,4 +5,4 @@ before_install:
   - sdk install maven
 
 jdk:
-  - openjdk17
+  - openjdk21
