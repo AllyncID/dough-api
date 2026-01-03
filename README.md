@@ -1,107 +1,101 @@
-# :bagel: Dough
+# 🥯 Dough (AllyncID Fork)
 
 <hr />
 <p align="center">
-    <a href="https://github.com/baked-libs/dough/actions">
-        <img alt="Build Status" src="https://github.com/baked-libs/dough/actions/workflows/maven.yml/badge.svg?event=push" />
+    <a href="https://github.com/AllyncID/dough-api/actions">
+        <img alt="Build Status" src="https://github.com/AllyncID/dough-api/actions/workflows/maven.yml/badge.svg?event=push" />
     </a>
-    <a href="https://javadoc.io/doc/io.github.baked-libs/dough-api">
-	<img alt="javadocs" src="https://javadoc.io/badge2/io.github.baked-libs/dough-api/javadoc.svg" />
-    </a>
-    <a href="https://search.maven.org/search?q=baked-libs">
-        <img alt="Maven Central" src="https://img.shields.io/maven-central/v/io.github.baked-libs/dough?color=1074ad&logo=apache-maven" />
-    </a>
-    <a href="https://sonarcloud.io/project/overview?id=baked-libs_dough">
-        <img alt="Code Coverage" src="https://sonarcloud.io/api/project_badges/measure?project=baked-libs_dough&metric=coverage" />
-    </a>
-    <a href="https://sonarcloud.io/project/overview?id=baked-libs_dough">
-        <img alt="Maintainability" src="https://sonarcloud.io/api/project_badges/measure?project=baked-libs_dough&metric=sqale_rating" />
+    <a href="https://jitpack.io/#AllyncID/dough-api">
+        <img alt="JitPack" src="https://jitpack.io/v/AllyncID/dough-api.svg" />
     </a>
 </p>
 <hr />
 
-Formerly known as "cs-corelib2", dough is a very powerful library aiming to help the everyday Spigot/Plugin developer.
-It is packed to the brim with useful features and APIs to use and play around with.
+## 📌 About This Fork
 
-Dough may be more commonly known as the backbone of [Slimefun](https://github.com/Slimefun/Slimefun4).
+This repository is a **community-maintained fork of Dough**, originally developed by the Slimefun team  
+and formerly known as **cs-corelib2**.
 
-## :mag: Getting Started
-Dough is hosted on maven-central (OSS Sonatype) for easy access.
-Furthermore, it consists of multiple different submodules.
+### ✨ What’s different in this fork?
 
-If you want to utilise the entirety of dough, use the artifact `dough-api`.<br>
-Otherwise replace `dough-api` in the following examples with whatever module you want to import. Note that
-some modules have dependencies on other modules, all modules require `dough-common` as an example.
+This fork is **modified and maintained by AllyncID** with the primary goal of:
 
-### Adding dough via gradle
-Dough can easily be included in gradle using mavenCentral.<br />
-Simply replace `[DOUGH VERSION]` with the most up to date version of dough:
-![Maven Central](https://img.shields.io/maven-central/v/io.github.baked-libs/dough?label=latest%20version)
+- ✅ **Full compatibility with Minecraft 1.21+**
+- ✅ **Java 21 support**
+- ❌ Removal of deprecated / broken Mojang Authlib access
+- ❌ Removal of legacy `GameProfile` property injection
+- ❌ Removal of NMS-based head skin injection
+- ✅ Migration to **official Bukkit / Paper APIs** (`PlayerProfile`, `SkullMeta#setOwnerProfile`)
+- ✅ Stable runtime on **Paper / Purpur 1.21.x**
 
-```gradle
+> ⚠️ This fork is **NOT an official Dough release**.  
+> It exists to bridge breaking changes introduced in Minecraft 1.20–1.21  
+> until upstream libraries fully migrate.
+
+---
+
+## 🧱 Usage & Compatibility
+
+- **Target Minecraft**: `1.21.x`
+- **Required Java**: `21`
+- **Tested on**:
+  - Paper 1.21.x
+  - Purpur 1.21.x
+- **Primary consumer**:
+  - Slimefun (custom / experimental builds)
+
+---
+
+## 📦 Getting Started (JitPack)
+
+This fork is distributed via **JitPack**.
+
+### Maven
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.github.AllyncID</groupId>
+        <artifactId>dough-api</artifactId>
+        <version>v1.1.3-mc1.21</version>
+    </dependency>
+</dependencies>
+
 repositories {
-	mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-	implementation 'io.github.baked-libs:dough-api:[DOUGH VERSION]'
-}
-```
-
-To shadow dough and relocate it:
-```gradle
-plugins {
-  id "com.github.johnrengelman.shadow" version "7.0.0"
+    implementation 'com.github.AllyncID:dough-api:v1.1.3-mc1.21'
 }
 
-shadowJar {
-   relocate "io.github.bakedlibs.dough", "[YOUR PACKAGE].dough"
-}
-```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>3.5.0</version>
 
-### Adding dough via Maven
-Dough can easily be included be added using maven-central.<br />
-Simply replace `[DOUGH VERSION]` with the most up to date version of dough:
-![Maven Central](https://img.shields.io/maven-central/v/io.github.baked-libs/dough?label=latest%20version)
-
-```xml
-<dependencies>
-  <dependency>
-    <groupId>io.github.baked-libs</groupId>
-    <artifactId>dough-api</artifactId>
-    <version>[DOUGH VERSION]</version>
-    <scope>compile</scope>
-  </dependency>
-</dependencies>
-```
-
-To shadow dough and relocate it:
-```xml
-<build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-shade-plugin</artifactId>
-      <version>3.2.4</version>
-
-      <configuration>
+    <configuration>
         <relocations>
-          <relocation>
-            <pattern>io.github.bakedlibs.dough</pattern>
-            <shadedPattern>[YOUR PACKAGE].dough</shadedPattern>
-          </relocation>
+            <relocation>
+                <pattern>io.github.bakedlibs.dough</pattern>
+                <shadedPattern>[YOUR.PACKAGE].dough</shadedPattern>
+            </relocation>
         </relocations>
-      </configuration>
+    </configuration>
 
-      <executions>
+    <executions>
         <execution>
-          <phase>package</phase>
-          <goals>
-            <goal>shade</goal>
-          </goals>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
         </execution>
-      </executions>
-    </plugin>
-  </plugins>
-</build>
-```
+    </executions>
+</plugin>
