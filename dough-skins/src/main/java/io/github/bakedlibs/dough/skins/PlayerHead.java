@@ -68,22 +68,29 @@ public final class PlayerHead {
 
     @ParametersAreNonnullByDefault
     public static void setSkin(Block block, PlayerSkin skin, boolean sendBlockUpdate) {
-        if (adapter == null) {
-            throw new UnsupportedOperationException("Cannot update skin texture, no adapter found");
-        }
 
         Material material = block.getType();
 
         if (material != Material.PLAYER_HEAD && material != Material.PLAYER_WALL_HEAD) {
-            throw new IllegalArgumentException("Cannot update a head texture. Expected a Player Head, received: " + material);
+            throw new IllegalArgumentException(
+                    "Cannot update a head texture. Expected a Player Head, received: " + material
+            );
+        }
+
+        if (!(block.getState() instanceof org.bukkit.block.Skull skull)) {
+            throw new IllegalStateException("BlockState is not a Skull");
         }
 
         try {
-            GameProfile profile = skin.getProfile().getGameProfile();
-            adapter.setGameProfile(block, profile, sendBlockUpdate);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            SkullMeta meta = (SkullMeta) new ItemStack(Material.PLAYER_HEAD).getItemMeta();
+            skin.getProfile().apply(meta);
+
+            skull.setOwnerProfile(meta.getOwnerProfile());
+            skull.update(true, sendBlockUpdate);
+        } catch (NoSuchFieldException | IllegalAccessException | UnknownServerVersionException e) {
             e.printStackTrace();
         }
     }
+
 
 }
