@@ -69,7 +69,7 @@ This fork is distributed via **JitPack**.
 ```
 
 ### Gradle
-```
+```xml
 repositories {
     maven { url 'https://jitpack.io' }
 }
@@ -81,7 +81,7 @@ dependencies {
 
 ### 🔧 Shading & Relocation (Recommended)
 #### Maven Shade Plugin
-```
+```xml
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-shade-plugin</artifactId>
