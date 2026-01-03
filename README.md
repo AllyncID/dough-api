@@ -11,12 +11,12 @@
 </p>
 <hr />
 
-## 📌 About This Fork
+## About This Fork
 
 This repository is a **community-maintained fork of Dough**, originally developed by the Slimefun team  
 and formerly known as **cs-corelib2**.
 
-### ✨ What’s different in this fork?
+### What’s different in this fork?
 
 This fork is **modified and maintained by AllyncID** with the primary goal of:
 
@@ -34,7 +34,7 @@ This fork is **modified and maintained by AllyncID** with the primary goal of:
 
 ---
 
-## 🧱 Usage & Compatibility
+## Usage & Compatibility
 
 - **Target Minecraft**: `1.21.x`
 - **Required Java**: `21`
@@ -46,7 +46,7 @@ This fork is **modified and maintained by AllyncID** with the primary goal of:
 
 ---
 
-## 📦 Getting Started (JitPack)
+## Getting Started (JitPack)
 
 This fork is distributed via **JitPack**.
 
