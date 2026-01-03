@@ -1,4 +1,4 @@
-# 🥯 Dough (AllyncID Fork)
+# 🥯 Dough (Allync Fork)
 
 <hr />
 <p align="center">
@@ -51,7 +51,6 @@ This fork is **modified and maintained by AllyncID** with the primary goal of:
 This fork is distributed via **JitPack**.
 
 ### Maven
-
 ```xml
 <repositories>
     <repository>
@@ -67,7 +66,10 @@ This fork is distributed via **JitPack**.
         <version>v1.1.3-mc1.21</version>
     </dependency>
 </dependencies>
+```
 
+### Gradle
+```
 repositories {
     maven { url 'https://jitpack.io' }
 }
@@ -75,7 +77,11 @@ repositories {
 dependencies {
     implementation 'com.github.AllyncID:dough-api:v1.1.3-mc1.21'
 }
+```
 
+### 🔧 Shading & Relocation (Recommended)
+#### Maven Shade Plugin
+```
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-shade-plugin</artifactId>
@@ -99,3 +105,4 @@ dependencies {
         </execution>
     </executions>
 </plugin>
+```
